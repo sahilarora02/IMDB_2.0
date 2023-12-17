@@ -11,7 +11,12 @@ import {
     Button,
   } from "react-native";
   import { useState, useEffect } from "react";
-  import {  } from "react-native-vector-icons"
+  // import {  } from "react-native-vector-icons"
+  // import { } from 'react-native-dotenv'
+  // console.log(env);
+import config  from "../config";
+
+console.log("this---",config.API_KEY)
 
 const HomeScreen = ({ navigation }) => {
     const [upcoming, setUpcoming] = useState([]);
@@ -51,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
         headers: {
           accept: "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZDM1MjhlNzcxZWUzNmU4ZTY0YWFhMjZkOTJhZTJiNSIsInN1YiI6IjY1N2I0MzRiNjNlNmZiMDBlM2NkOWM3NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OdPD0u--6TRO5b8gVdVB-UQ8yeMHVY1fovOl6iVcWMs",
+            `Bearer ${config.API_KEY}`,
         },
       };
 
@@ -78,7 +83,7 @@ const HomeScreen = ({ navigation }) => {
         headers: {
           accept: "application/json",
           Authorization:
-            `Bearer ${process.env.REACT_API_KEY}`,
+            `Bearer ${config.API_KEY}`,
         },
       };
       console.log(process.env.REACT_API_KEY)
@@ -226,7 +231,7 @@ const HomeScreen = ({ navigation }) => {
                       />
                     </Pressable>
                     <Text style={styles.item} numberOfLines={2}>
-                      {tvShow.original_name}
+                      {tvShow[index].original_name}
                     </Text>
                   </View>
                 ))}
